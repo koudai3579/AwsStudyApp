@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YPr-6d-oKG">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MAP-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="AwsStudyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7rx-iI-EEr">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y57-Vx-bhD">
+                                <rect key="frame" x="96.666666666666686" y="183" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2YC-bM-89w"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="gUQ-4y-Uea"/>
+                                </constraints>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="東京駅までの経路を表示">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="CreateRouteToTokyoStation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="atq-fB-jk4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onH-8K-b4O">
+                                <rect key="frame" x="96.666666666666686" y="118" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="KQ9-H7-2SA"/>
+                                    <constraint firstAttribute="width" constant="200" id="tT2-Aq-sUM"/>
+                                </constraints>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="現在位置を表示">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="ShowCurrentLocationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Scw-hl-2oP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="onH-8K-b4O" firstAttribute="centerX" secondItem="y57-Vx-bhD" secondAttribute="centerX" id="4xM-GY-3co"/>
+                            <constraint firstItem="y57-Vx-bhD" firstAttribute="top" secondItem="onH-8K-b4O" secondAttribute="bottom" constant="15" id="5Kq-26-1Jh"/>
+                            <constraint firstItem="y57-Vx-bhD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Lf-LB-Jl4"/>
+                            <constraint firstAttribute="bottom" secondItem="7rx-iI-EEr" secondAttribute="bottom" id="BQc-Bi-iQP"/>
+                            <constraint firstItem="7rx-iI-EEr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Msl-m3-c2v"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7rx-iI-EEr" secondAttribute="trailing" id="Nqo-eR-V3v"/>
+                            <constraint firstItem="7rx-iI-EEr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Opz-1T-MBc"/>
+                            <constraint firstItem="onH-8K-b4O" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="SHf-fx-87J"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="MAP" id="96k-Nt-9Pv">
+                        <barButtonItem key="leftBarButtonItem" title="ユーザー設定" id="FFb-jB-wMI">
+                            <connections>
+                                <action selector="ToUserSettingScreenButtonTapped:" destination="BYZ-38-t0r" id="Qor-yw-pO6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="SignOut" id="jVf-lj-6aZ">
+                            <connections>
+                                <action selector="SignOutButtonAction:" destination="BYZ-38-t0r" id="1vG-hw-BMC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="createRouteButton" destination="y57-Vx-bhD" id="VZS-zK-lFV"/>
+                        <outlet property="mapView" destination="7rx-iI-EEr" id="kgc-wx-piJ"/>
+                        <outlet property="showCurrentLoacationButton" destination="onH-8K-b4O" id="flW-LW-4Xo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066.4122137404579" y="3.5211267605633805"/>
+        </scene>
+        <!--ユーザー設定-->
+        <scene sceneID="2zp-wd-3B7">
+            <objects>
+                <viewController storyboardIdentifier="UserSettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jd0-Gt-27A" customClass="UserSettingViewController" customModule="AwsStudyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vPu-uh-rDV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="名前" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xni-nq-Fod">
+                                <rect key="frame" x="96.666666666666686" y="289" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6lz-ov-0lT"/>
+                                    <constraint firstAttribute="width" constant="200" id="bS6-n8-qIl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hzy-ov-faf">
+                                <rect key="frame" x="96.666666666666686" y="74" width="200" height="200"/>
+                                <color key="backgroundColor" red="0.51903180500000001" green="0.92939150329999998" blue="0.76761420339999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="0fh-MJ-Cqj"/>
+                                    <constraint firstAttribute="height" constant="200" id="VKi-0G-TTZ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eUN-l1-jhE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hzy-ov-faf" firstAttribute="centerX" secondItem="vPu-uh-rDV" secondAttribute="centerX" id="PM8-X9-a8v"/>
+                            <constraint firstItem="Hzy-ov-faf" firstAttribute="top" secondItem="eUN-l1-jhE" secondAttribute="top" constant="15" id="Tbd-GE-xby"/>
+                            <constraint firstItem="Xni-nq-Fod" firstAttribute="top" secondItem="Hzy-ov-faf" secondAttribute="bottom" constant="15" id="XOy-Z1-ypP"/>
+                            <constraint firstItem="Xni-nq-Fod" firstAttribute="centerX" secondItem="vPu-uh-rDV" secondAttribute="centerX" id="rsg-0y-eQZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="ユーザー設定" id="q7h-JK-Jnq"/>
+                    <connections>
+                        <outlet property="userImageView" destination="Hzy-ov-faf" id="NHB-aw-viI"/>
+                        <outlet property="userNameTextField" destination="Xni-nq-Fod" id="cJI-fQ-NIp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8UF-0W-Ebh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1751.9083969465648" y="3.5211267605633805"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7Ng-oq-wCC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YPr-6d-oKG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7nd-gT-Lfj">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gY2-lv-Hl4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KFC-jG-kvj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
