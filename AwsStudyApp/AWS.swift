@@ -1,8 +1,7 @@
 import AWSS3
 class AWSManager {
 
-    //(メモ)セキュリティのためキーは伏せており、AmplityConfigフォルダはGit管理から外している
-    // AWSのキーや設定値(公開しないように注意！)
+    // AWSのキーや設定値
     let accessKey = "ACCESSKEY"
     let secretKey = "SECREATKEY"
     let bucketName = "BUCKETNAME"
