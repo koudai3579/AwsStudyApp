@@ -1,9 +1,6 @@
 import UIKit
-import AWSMobileClient
-import AWSCognitoIdentityProvider
 import AWSDynamoDB
 import AWSS3
-
 
 class UserSettingViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
@@ -19,19 +16,10 @@ class UserSettingViewController: UIViewController, UITextFieldDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "プロフィール設定"
-        // credentialsProvider,configurationを初期化しAWSサービスのデフォルト構成を設定
-        credentialsProvider = AWSCognitoCredentialsProvider(
-            regionType: .APNortheast1,
-            identityPoolId: "ap-northeast-1:0ee33487-4892-49db-9ad4-ecbc02f2ba7a"
-        )
-        configuration = AWSServiceConfiguration(region:.APNortheast1,credentialsProvider: credentialsProvider)
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
-        
         userImageView.isUserInteractionEnabled = true
         userImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userImageTapped)))
         userImageView.layer.cornerRadius = 100
         userNameTextField.delegate = self
-        fetchUserName()
         fetchUserName()
     }
     
@@ -58,11 +46,8 @@ class UserSettingViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     //AWS_S3へ画像を保存
     private func SaveImageToAws(image: UIImage) {
-        let credentialsProvider = AWSStaticCredentialsProvider(accessKey: "AKIA4A4MNQR7LZGM6WDZ", secretKey: "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")
-        let configuration = AWSServiceConfiguration(region: .APNortheast1, credentialsProvider: credentialsProvider)
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
         
-        let bucketName = "amplify-awsstudyapp-dev-151305-deployment"
+        let bucketName = AWSManager().bucketName
         let uuid = UUID().uuidString
         let fileName = "userImage/\(uuid).jpg" // AWS S3に保存される名前(/で区切ることでuserImageフォルダへデータを格納できる)
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {return}
@@ -88,7 +73,7 @@ class UserSettingViewController: UIViewController, UITextFieldDelegate, UIImageP
             }
         ).continueWith { (task) -> Any? in
             if let error = task.error {
-                print("Error uploading image: \(error.localizedDescription)")
+                print("画像のアップロードに失敗しました:  \(error.localizedDescription)")
             }
             return nil
         }
@@ -115,7 +100,7 @@ class UserSettingViewController: UIViewController, UITextFieldDelegate, UIImageP
         })
     }
     
-    //全User情報を取得しidentityIdが一致するものを本ユーザーの名前とする(※identityIdをキー検索するのが理想ではあるが不明)
+    //全User情報を取得しidentityIdが一致するものを本ユーザー情報とする(※identityIdをキー検索するのが理想ではあるが不明)
     private func fetchUserName() {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         let scanExpression = AWSDynamoDBScanExpression()
@@ -128,7 +113,6 @@ class UserSettingViewController: UIViewController, UITextFieldDelegate, UIImageP
                 print("全User情報の取得に失敗しました: \(error)")
                 return
             }
-            print("全User情報の取得に成功しました: \(users)")
             DispatchQueue.main.async {
                 for user in users{
                     //アプリで取得したidentityIdとデータベース上とで一致するものを探す
@@ -145,31 +129,19 @@ class UserSettingViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     //画面生成時にユーザーイメージをAWSから取得し表示
     private func fetchUserImageFromAWS(fileName:String){
-        let credentialsProvider = AWSStaticCredentialsProvider(accessKey: "AKIA4A4MNQR7LZGM6WDZ", secretKey: "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")
-        let configuration = AWSServiceConfiguration(region: .APNortheast1, credentialsProvider: credentialsProvider)
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
-        
-        let bucketName = "amplify-awsstudyapp-dev-151305-deployment"
-        let transferUtility = AWSS3TransferUtility.default()
+        if (fileName == ""){return}
         let expression = AWSS3TransferUtilityDownloadExpression()
-        
-        let downloadingFilePath = NSTemporaryDirectory().appending(fileName)
-        
-        print("downloadingFilePath:\(downloadingFilePath)")
-        
-        let downloadingFileURL = URL(fileURLWithPath: downloadingFilePath)
-        
-        print("downloadingFileURL:\(downloadingFileURL)")
-        
-        transferUtility.download(to: downloadingFileURL,bucket: bucketName,key:fileName,expression: expression) { (task, url, data, error) in
-            DispatchQueue.main.async {
-                if let error = error {
-                    print("ユーザー画像(\(fileName))の取得に失敗しました: \(error.localizedDescription)") //現在ここで詰まっている
-                } else if let data = data, let image = UIImage(data: data) {
-                    // ダウンロードに成功した画像をアプリ内で表示
+        let transferUtility = AWSS3TransferUtility.default()
+        //バケット名およびファイル名を指定し一致する画像をダウンロード
+        transferUtility.downloadData(fromBucket: AWSManager().bucketName, key: fileName, expression: expression) { (task, URL, data, error) in
+            if let error = error {
+                print("画像の取得に失敗しました：\(error)") //失敗する場合はコンソール側の設定も確かめる
+            }
+            DispatchQueue.main.async(execute: {
+                if let data = data,let image = UIImage(data: data){
                     self.userImageView.image = image
                 }
-            }
+            })
         }
     }
     

@@ -108,9 +108,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hzy-ov-faf">
-                                <rect key="frame" x="96.666666666666686" y="74" width="200" height="200"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Hzy-ov-faf">
+                                <rect key="frame" x="96.666666666666686" y="74.999999999999986" width="200" height="198.66666666666669"/>
                                 <color key="backgroundColor" red="0.51903180500000001" green="0.92939150329999998" blue="0.76761420339999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="0fh-MJ-Cqj"/>
                                     <constraint firstAttribute="height" constant="200" id="VKi-0G-TTZ"/>
@@ -156,6 +157,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="photo.circle" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

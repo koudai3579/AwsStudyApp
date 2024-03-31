@@ -11,19 +11,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try Amplify.add(plugin: AWSCognitoAuthPlugin())
             try Amplify.configure()
-            print("Amplify configured with auth plugin")
         } catch {
-            print("Failed to initialize Amplify with \(error)")
+            print("Failed to initialize AWS_Amplify:\(error)")
         }
         
-        //↓AWS認証↓
-        //※コンソールで作成できsecretKeyは作成時しか参照できない(公開しないように注意)
-        let provider = AWSStaticCredentialsProvider(accessKey: "AKIA4A4MNQR7LZGM6WDZ", secretKey: "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")
-        let configuration = AWSServiceConfiguration(
-            region: AWSRegionType.APNortheast1,
-            credentialsProvider: provider)
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
-        
+        //↓AWS認証(アプリ内で1度実行すればOK)↓
+        AWSManager().initializeAWS()
         return true
     }
     

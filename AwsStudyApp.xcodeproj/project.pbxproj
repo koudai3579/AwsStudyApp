@@ -15,6 +15,7 @@
 		0AB3278F2BAEA43D00D77DCF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0AB3278E2BAEA43D00D77DCF /* Base */; };
 		0AB327982BAFC4A700D77DCF /* UserSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB327972BAFC4A700D77DCF /* UserSettingViewController.swift */; };
 		0AB3279A2BAFD3EE00D77DCF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB327992BAFD3EE00D77DCF /* User.swift */; };
+		0ACD5A402BB8FC8100C3A194 /* AWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD5A3F2BB8FC8100C3A194 /* AWS.swift */; };
 		714B47F2B4081D3C9EBE6630 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 49825504548CDEB3EEDE5935 /* amplifyconfiguration.json */; };
 		8BBE7DFAAF1BC6CCFE54A401 /* Pods_AwsStudyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADABB3CA8081032037F01F5A /* Pods_AwsStudyApp.framework */; };
 		CCD853564F3D2EE36D97380A /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 09319C2BD2E920711EE1DDD8 /* awsconfiguration.json */; };
@@ -32,6 +33,7 @@
 		0AB327902BAEA43D00D77DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AB327972BAFC4A700D77DCF /* UserSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingViewController.swift; sourceTree = "<group>"; };
 		0AB327992BAFD3EE00D77DCF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0ACD5A3F2BB8FC8100C3A194 /* AWS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWS.swift; sourceTree = "<group>"; };
 		49825504548CDEB3EEDE5935 /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		ADABB3CA8081032037F01F5A /* Pods_AwsStudyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwsStudyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47544BB8F9BEE01F411787A /* Pods-AwsStudyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwsStudyApp.debug.xcconfig"; path = "Target Support Files/Pods-AwsStudyApp/Pods-AwsStudyApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,9 +88,10 @@
 				0AB327842BAEA43700D77DCF /* SceneDelegate.swift */,
 				0AB327862BAEA43700D77DCF /* MapViewController.swift */,
 				0AB327972BAFC4A700D77DCF /* UserSettingViewController.swift */,
+				0ACD5A3F2BB8FC8100C3A194 /* AWS.swift */,
 				0AB327882BAEA43700D77DCF /* Main.storyboard */,
-				0AB3278B2BAEA43D00D77DCF /* Assets.xcassets */,
 				0AB3278D2BAEA43D00D77DCF /* LaunchScreen.storyboard */,
+				0AB3278B2BAEA43D00D77DCF /* Assets.xcassets */,
 				0AB327902BAEA43D00D77DCF /* Info.plist */,
 			);
 			path = AwsStudyApp;
@@ -231,6 +234,7 @@
 				0AB327872BAEA43700D77DCF /* MapViewController.swift in Sources */,
 				0AB327832BAEA43700D77DCF /* AppDelegate.swift in Sources */,
 				0AB327982BAFC4A700D77DCF /* UserSettingViewController.swift in Sources */,
+				0ACD5A402BB8FC8100C3A194 /* AWS.swift in Sources */,
 				0AB3279A2BAFD3EE00D77DCF /* User.swift in Sources */,
 				0AB327852BAEA43700D77DCF /* SceneDelegate.swift in Sources */,
 			);

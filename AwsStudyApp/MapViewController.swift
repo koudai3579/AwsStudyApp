@@ -4,17 +4,18 @@ import MapKit
 import AWSMobileClient
 import CoreLocation // 位置情報を取得するためのモジュール
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate,MKMapViewDelegate {
     
     @IBOutlet weak var createRouteButton: UIButton!
     @IBOutlet weak var showCurrentLoacationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var nowCoordinate:CLLocationCoordinate2D!
-    var identityId:String!
+    var identityId:String! //AWSユーザーUID
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         showCurrentLoacationButton.layer.cornerRadius = 10
         createRouteButton.layer.cornerRadius = 10
         //画面起動時にサインイン情報がなければサインイン画面を上に作成
@@ -77,6 +78,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestLocation()
     }
     
+    //MapViewで現在地に焦点を当てる
     @IBAction func ShowCurrentLocationAction(_ sender: Any) {
         mapView.setCenter(nowCoordinate, animated:true)
         var region = mapView.region
@@ -94,19 +96,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     //現在地から東京駅までのルートを算出しmapViewに表示
     @IBAction func CreateRouteToTokyoStation(_ sender: Any) {
         
-        mapView.delegate = self
         //出発地点は位置情報取得時に更新した現在地を使用する
         let sourceLocation = nowCoordinate
         //目的地である東京駅の位置情報を設定（緯度: 35.681236 経度: 139.767125）
         let destinationLocation = CLLocationCoordinate2D(latitude: 35.681236, longitude: 139.767125)
         
-        // set rigion
+        //位置設定
         let coordinate = CLLocationCoordinate2DMake((sourceLocation!.latitude + destinationLocation.latitude) / 2, (sourceLocation!.longitude + destinationLocation.longitude) / 2)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let region = MKCoordinateRegion(center: coordinate, span: span)
         mapView.setRegion(region, animated: true)
         
-        // calc direction
+        //目的地計算
         let sourcePlacemark = MKPlacemark(coordinate: sourceLocation!, addressDictionary: nil)
         let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
         
@@ -183,11 +184,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    
-}
-
-//mapViewの追加設定
-extension MapViewController: MKMapViewDelegate {
+    //mapViewの追加設定
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let polyline = overlay as? MKPolyline {
             let renderer = MKPolylineRenderer(polyline: polyline)
@@ -197,4 +194,5 @@ extension MapViewController: MKMapViewDelegate {
         }
         return MKOverlayRenderer()
     }
+    
 }
