@@ -1,11 +1,12 @@
 import AWSS3
 class AWSManager {
 
+    //(メモ)セキュリティのためキーは伏せており、AmplityConfigフォルダはGit管理から外している
     // AWSのキーや設定値(公開しないように注意！)
-    let accessKey = "AKIA4A4MNQR7LZGM6WDZ"
-    let secretKey = "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"
-    let bucketName = "amplify-awsstudyapp-dev-151305-deployment"
-    let identityPoolId = "ap-northeast-1:0ee33487-4892-49db-9ad4-ecbc02f2ba7a"
+    let accessKey = "ACCESSKEY"
+    let secretKey = "SECREATKEY"
+    let bucketName = "BUCKETNAME"
+    let identityPoolId = "IDENTITY_POOLID"
     let region = AWSRegionType.APNortheast1
 
     // AWS初期化処理(※Keyはコンソールで作成できsecretKeyは作成時しか参照できない)
